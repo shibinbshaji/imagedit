@@ -24,7 +24,7 @@ To resize images into the specified dimensions or resolution.
 ### 2. Resize with Inches
 `python3 imagedit.py <file-name> -i -w 3.5 -he 4.5`
 
-`-c` - Inches
+`-i` - Inches
 
 `-w` - Width
 
