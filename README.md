@@ -3,7 +3,9 @@ I'll draw you a picture - You're trying to submit some application to a website 
 
 ## Installation
 `git clone <this repository>`
+
 Wait for it....
+
 `pip3 install -r requirements.txt`
 
 ## Usage
