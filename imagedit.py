@@ -12,7 +12,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--File", help = "Select File")
 parser.add_argument("-s", "--Stealth",help = "Open without Banner",action='store_true')
 parser.add_argument("-r", "--Resize",help = "Resize WITHOUT preserving aspect ratio. Leave blank if you want to preserve aspect ratio", action='store_true')
-parser.add_argument("-c", "--Centimeter",help = "Flag for entering values in cm", action='store_true')
+parser.add_argument("-c", "--Centimeter",help = "Flag for entering values in Centimeters", action='store_true')
+parser.add_argument("-i", "--Inch",help = "Flag for entering values in Inches", action='store_true')
 parser.add_argument("-w", "--Width",help = "Enter the width")
 parser.add_argument("-he", "--Height",help = "Enter the height")
 
@@ -26,8 +27,15 @@ else:
 	print("Imagedit")
 
 print("Selected file: % s" % args.File)
+filename, file_extension = os.path.splitext(args.File)
+print(file_extension)
+ext = [".jpg",".jpeg",".png",".JPG",".JPEG",".PNG"]
+if file_extension not in ext:
+	print("Please specify a file of .jpg, .jpeg or .png")
+	exit()
 image = Image.open(args.File)
 flag = 0
+
 if(args.Centimeter == True):
 	flag = 1
 	print("Resizing image based on cm values!! (Won't maintain aspect ratio)")
@@ -37,7 +45,19 @@ if(args.Centimeter == True):
 	height = math.floor(height)
 	new_image = image.resize((int(width), int(height)))
 	new_image_name = 'image' + str(width) + 'x' + str(height)
-	new_image.save(new_image_name + '.png')	
+	new_image.save(new_image_name + file_extension)	
+	print("Saving file as " + new_image_name)
+
+if(args.Inch == True):
+	flag = 1
+	print("Resizing image based on inches values!! (Won't maintain aspect ratio)")
+	width = float(args.Width) * 96
+	width = math.floor(width)
+	height = float(args.Height) * 96
+	height = math.floor(height)
+	new_image = image.resize((int(width), int(height)))
+	new_image_name = 'image' + str(width) + 'x' + str(height)
+	new_image.save(new_image_name + file_extension)	
 	print("Saving file as " + new_image_name)
 
 if(args.Resize == True):
@@ -47,7 +67,7 @@ if(args.Resize == True):
 	height = math.ceil(float(args.Height))
 	new_image = image.resize((int(width), int(height)))
 	new_image_name = 'image' + args.Width + 'x' + args.Height
-	new_image.save(new_image_name + '.png')	
+	new_image.save(new_image_name + file_extension)	
 	print("Saving file as " + new_image_name)
 if flag == 0:
 	print("Nothing done. Maybe you forgot the '-r' or '-c' flag!")
