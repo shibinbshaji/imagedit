@@ -10,7 +10,9 @@ Wait for it....
 `pip3 install -r requirements.txt`
 
 ## Usage
-### 1. Resize with cm
+To resize images into the specified dimensions or resolution.
+
+### 1. Resize with Centimeter
 `python3 imagedit.py <file-name> -c -w 3.5 -he 4.5`
 
 `-c` - Centimeters
@@ -19,8 +21,17 @@ Wait for it....
 
 `-h` - Height
 
-### 2. Resize with resolution
-`python3 imagedit.py <file-name> -w 3.5 -he 4.5`
+### 2. Resize with Inches
+`python3 imagedit.py <file-name> -i -w 3.5 -he 4.5`
+
+`-c` - Inches
+
+`-w` - Width
+
+`-h` - Height
+
+### 3. Resize with resolution
+`python3 imagedit.py <file-name> -w 350 -he 450`
 
 `-w` - Width
 
